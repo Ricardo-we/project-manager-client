@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { FormControl, FormGroup, TextField, Button } from "@mui/material";
+import { FormControl, CircularProgress, FormGroup, TextField, Button } from "@mui/material";
 
 export const TaskForm = ({ defaults={}, onSubmit }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [taskTimeEnd, setTaskTimeEnd] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const onFormSubmit = e => {
         e.preventDefault();
+        setLoading(true);
         const formatDate = (new Date(taskTimeEnd)).toISOString().split('T')[0];
-        onSubmit(name, description, formatDate);
+        onSubmit(name, description, formatDate).then(() => setLoading(false));
     }
 
     const handleDefaultValues = () => {
@@ -49,7 +51,10 @@ export const TaskForm = ({ defaults={}, onSubmit }) => {
                         onChange={e => setTaskTimeEnd(e.target.value)}
                     />
                 </FormControl>
-                <Button type="submit" color="info" variant="outlined">SUBMIT</Button>
+                {   loading ? <Button color="info" disabled><CircularProgress/></Button>
+                    :
+                    <Button type="submit" color="info" variant="outlined">SUBMIT</Button>
+                }
             </FormGroup>
         </form>
     )

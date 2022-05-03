@@ -22,7 +22,7 @@ export function ProjectDetailView(){
     }
 
     const addTask = (name, description, formatDate) => {
-        addTaskRequest(name, description, formatDate, projectId)
+        return addTaskRequest(name, description, formatDate, projectId)
             .then(getProjectTasks);
     }
 
@@ -48,7 +48,7 @@ export function ProjectDetailView(){
     }
 
     const onCheckTask = (checked, task_id) => {
-        updateTaskRequest(checked, undefined, undefined, undefined, task_id);
+        return updateTaskRequest(checked, undefined, undefined, undefined, task_id);
     }
 
     useLayoutEffect(() => {
@@ -83,7 +83,7 @@ export function ProjectDetailView(){
 const UpdateTaskModal = ({ open, onClose, task }) => {
 
     const updateTask = (name, description, formatDate) => {
-        updateTaskRequest(task.done, name, description, formatDate, task.id)
+        return updateTaskRequest(task.done, name, description, formatDate, task.id)
             .then(onClose);
     }
 

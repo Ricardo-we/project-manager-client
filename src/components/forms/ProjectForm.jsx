@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { FormGroup, FormControl, TextField, Button } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 export const ProjectForm = ({ defaults={}, onSubmit }) => {
     const [projectName, setProjectName] = useState('');
     const [projectDescription, setProjectDescription] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const onFormSubmit = e => {
         e.preventDefault();
-        onSubmit(projectName, projectDescription);
+        setLoading(true);
+        onSubmit(projectName, projectDescription).then(() => setLoading(false));
     }
 
     useEffect(() => {
@@ -34,7 +37,10 @@ export const ProjectForm = ({ defaults={}, onSubmit }) => {
                         onChange={e => setProjectDescription(e.target.value)}
                     />
                 </FormControl>
-                <Button type="submit" color="info" variant="outlined">SUBMIT</Button>
+                {   loading ? <Button color="info" disabled><CircularProgress/></Button>
+                    :
+                    <Button type="submit" color="info" variant="outlined">SUBMIT</Button>
+                }
             </FormGroup>
         </form>
     )

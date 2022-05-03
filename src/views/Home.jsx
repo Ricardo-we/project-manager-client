@@ -21,12 +21,12 @@ export function Home(){
     const [selectedProject, setSelectedProject] = useState({});
 
     const getUserProjects = () => {
-        getUserProjectsRequest(user_id)   
+        return getUserProjectsRequest(user_id)   
             .then(res => setUserProjects(res))
     }
 
     const addProject = (name, description) => {
-        addProjectRequest(name, description, user_id)
+        return addProjectRequest(name, description, user_id)
             .then(getUserProjects);
     }
 
@@ -41,7 +41,7 @@ export function Home(){
     }
 
     const submitDelete = () => {
-        deleteProjectRequest(selectedProject.id)
+        return deleteProjectRequest(selectedProject.id)
             .then(() => {
                 getUserProjects()
                 setAlertOpen(false);
@@ -96,7 +96,7 @@ export function Home(){
 const UpdateProjectModal = ({ project, open, onClose, onSubmit }) => {
 
     const onSubmitProjectForm = (name, description) => {
-        updateProjectRequest(name, description, project.id)
+        return updateProjectRequest(name, description, project.id)
             .then(onSubmit);
     }
 
