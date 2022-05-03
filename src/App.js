@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/assets.css';
+import { createContext } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useLocalStorage } from './hooks/useLocalStorage';
+import { Login } from './views/Login';
+import { Home } from './views/Home';
+import { NavBar } from './components/NavBar';
+import { ProjectDetailView } from './views/ProjectDetailView';
+
+export const AppContext = createContext(null);
 
 function App() {
+  const [userDataInStorage, setUserDataInStorage] = useLocalStorage('user', '');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={{userDataInStorage, setUserDataInStorage}}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='' element={<Login/>}/>
+          <Route path='/home' element={<><NavBar/><Home/></>}/>
+          <Route path='/project/:projectId' element={<><NavBar/><ProjectDetailView/></>}/>
+        </Routes>
+      </BrowserRouter>
+    </AppContext.Provider>
   );
 }
 

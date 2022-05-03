@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.mt-2 {
+  margin-top: 5px !important;
+}
+
+.my-2 {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.mb-2 {
+  margin-bottom: 5px !important;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
