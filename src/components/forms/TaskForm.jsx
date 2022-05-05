@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import { FormControl, CircularProgress, FormGroup, TextField, Button } from "@mui/material";
+import { formatDate } from './../../services/date-functions.js';
 
 export const TaskForm = ({ defaults={}, onSubmit }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [taskTimeEnd, setTaskTimeEnd] = useState('');
+    const [taskTimeEnd, setTaskTimeEnd] = useState(formatDate());
     const [loading, setLoading] = useState(false);
 
     const onFormSubmit = e => {
         e.preventDefault();
         setLoading(true);
-        const formatDate = (new Date(taskTimeEnd)).toISOString().split('T')[0] || null;
-        onSubmit(name, description, formatDate)
+
+        onSubmit(name, description, formatDate(taskTimeEnd))
             .then(() => setLoading(false))
             .catch(() => setLoading(false));
     }

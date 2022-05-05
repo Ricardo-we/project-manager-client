@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, Typography,  Button, CardActions } from "@mui/material"
 import { useEffect } from "react";
-import { getDatesDifference } from "../services/compare-dates";
+import { getDatesDifference } from "../services/date-functions";
 import { TaskFloatingMenu, FloatingMenu } from "./FloatingMenu";
 import { Link } from 'react-router-dom';
 

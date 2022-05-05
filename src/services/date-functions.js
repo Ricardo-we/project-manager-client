@@ -18,3 +18,11 @@ export function getDatesDifference(date1, date2){
         return null
     }
 }
+
+export function formatDate(date=new Date()){
+    try{
+        return date.toISOString().split('T')[0]
+    } catch(error){
+        return (new Date()).toISOString().split('T')[0]
+    }
+}
