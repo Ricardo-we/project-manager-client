@@ -19,7 +19,6 @@ export async function deleteTaskRequest(task_id){
 }
 
 export async function updateTaskRequest(done, name, description, taskTimeEnd, task_id){
-    console.log(done)
     const response = await axios.put(`${ENDPOINT}/${task_id}`, { name, description, taskTimeEnd, done });
     return response.data;
 }

@@ -10,7 +10,7 @@ export const TaskForm = ({ defaults={}, onSubmit }) => {
     const onFormSubmit = e => {
         e.preventDefault();
         setLoading(true);
-        const formatDate = (new Date(taskTimeEnd)).toISOString().split('T')[0];
+        const formatDate = (new Date(taskTimeEnd)).toISOString().split('T')[0] || null;
         onSubmit(name, description, formatDate)
             .then(() => setLoading(false))
             .catch(() => setLoading(false));
