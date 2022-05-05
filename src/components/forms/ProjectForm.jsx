@@ -10,7 +10,7 @@ export const ProjectForm = ({ defaults={}, onSubmit }) => {
     const onFormSubmit = e => {
         e.preventDefault();
         setLoading(true);
-        onSubmit(projectName, projectDescription).then(() => setLoading(false));
+        onSubmit(projectName, projectDescription).then(() => setLoading(false)).catch(() => setLoading(false));
     }
 
     useEffect(() => {
